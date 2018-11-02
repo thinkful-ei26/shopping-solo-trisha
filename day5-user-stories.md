@@ -14,13 +14,13 @@ Implement the following features which will require a more complex store object:
  User can type in a search term and the displayed list will be filtered by item names only containing that search term
   1. Create an html search box
   2. CREATE LOGIC for this feature:
-    a. This feature will have the same functionality as the toggle check BUT get the value of the submit button
-    b. you are combining handleToggleHideItemFilter and handleNewItemSubmit
-  3. Change STORE to recognize the search term value
-  4. Create a function that recognizes if a search term is submitted (boolean)
-  5. Create handleFilterBySearchTerm() that listens for the submit event and attaches it to the js-filterby-searchWord <form>
-  6. Change renderShoppingList() for conditional including handleFilterBySearchTerm
-  7. RENDER THE HTML via renderShoppingList() inside the handleFilterBySearchTerm() function
+   * This feature will have the same functionality as the toggle check BUT get the value of the submit button
+   * you are combining `handleToggleHideItemFilter` and `handleNewItemSubmit`
+  3. Change `STORE` to recognize the search term value
+  4. Create a function that `filterBySearchTerm()` recognizes if a search term is submitted (boolean)
+  5. Create `handleFilterBySearchTerm()` that listens for the submit event and attaches it to the js-filterby-searchWord <form>
+  6. Change `renderShoppingList()` for conditional including `handleFilterBySearchTerm`
+  7. RENDER THE HTML via `renderShoppingList()` inside the `handleFilterBySearchTerm()` function
 
 
 ## CHALLENGE #3: User can edit the title of an item
