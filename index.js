@@ -1,7 +1,7 @@
 /*eslint-env jquery*/
+
 'use strict';
 
-// 2. change the store from array to object
 const STORE = {
   items: [
     {name: 'apples', checked: false},
@@ -9,30 +9,13 @@ const STORE = {
     {name: 'milk', checked: true},
     {name: 'bread', checked: false}
   ],
-  hideCompleted: false
+  hideCompleted: false,
+  searchTermSubmitted: false,
 };
 
 /* *************************************************************
 All functions below have a side effect of mutating global variable STORE
 ************************************************************* */
-
-/* User stories for PM drills */
-
-// Implement the following features which will require a more complex store object:
-//  CHALLENGE #1: User can press a switch/checkbox to toggle between displaying all items or displaying only items that are unchecked
-  // 1. Added checkbox in index.html
-  // 2. change the state of STORE from an array to an object with hideCompleted property
-  // 3. Create a toggleHideItems function which determines if the STORE.hideCompleted is clicked or not (boolean)
-  // 4. Create handleToggleHideItemFilter attaches the toggleItems function to an event handler that listens for checking #toggle-filter-completed-items
-  // 5. Render the new state of STORE
-
-
-//  CHALLENGE #2: User can type in a search term and the displayed list will be filtered by item names only containing that search term
-
-
-//  CHALLENGE #3: User can edit the title of an item
-
-
 
 
 function generateItemElement(item, itemIndex, template) {
@@ -64,13 +47,27 @@ function renderShoppingList() {
   // render the shopping list in the DOM
   console.log('`renderShoppingList` ran');
 
-  //  >>>> add a variable that will filter the Items
+  //  >>>> add a variable that will filter the checked items
   let filteredItems = [...STORE.items];
+  //
+  // // >>> add a variable that will filter by search terms
+  let searchTermItem = [...STORE.items];
+
+  // Extract properties from the STORE to use for conditional statements below
+  const { hideCompleted, searchTermSubmitted } = STORE;
 
 
   //  >>>> add conditional statement that will run through the STORE.items and grab all the items that are not checked and render it on the DOM
   if (STORE.hideCompleted) {
     filteredItems = filteredItems.filter(item => !item.checked);
+  }
+
+
+  // !!!!! HELP WITH ITEM FILTER: I need to tell renderShoppingList to go through STORE.items and if the value of the submitted <input> in js-filter-search-entry which is defined in handleFilterBySearchTerm() is the same as the STORE.item.name then filter keep those items rendered !!!!
+  if (STORE.searchTermSubmitted) {
+    searchTermItem = searchTermItem.filter( item => item.name
+      // .toLowerCase().indexOf(searchTermSubmitted.toLowerCase()) !== -1
+    );
   }
 
 
@@ -164,7 +161,26 @@ function handleToggleHideItemFilter() {
   });
 }
 
+// >>>> if the STORE.searchTermSubmitted is false
+function filterBySearchTerm(){
+  console.log('filterBySearchTerm fired!');
+  STORE.searchTermSubmitted = !STORE.searchTermSubmitted;
+}
 
+//  >>>>
+function handleFilterBySearchTerm() {
+
+  $('#js-filterby-searchWord').on('submit', function(event) {
+    event.preventDefault();
+
+    console.log('handleFilterBySearchTerm fired!');
+
+    const searchEntry = $('.js-filter-search-entry').val();
+    $('.js-filter-search-entry').val('');
+    filterBySearchTerm(searchEntry);
+    renderShoppingList();
+  });
+}
 
 // this function will be our callback when the page loads. it's responsible for
 // initially rendering the shopping list, and activating our individual functions
@@ -176,6 +192,7 @@ function handleShoppingList() {
   handleItemCheckClicked();
   handleDeleteItemClicked();
   handleToggleHideItemFilter();
+  handleFilterBySearchTerm();
 }
 
 // when the page loads, call `handleShoppingList`
