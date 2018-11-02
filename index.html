@@ -17,11 +17,13 @@
             <button type="submit">Add item</button>
         </form>
 
-        <!-- START: add a hide completed button -->
-        <div>
-          <input type="checkbox" id="toggle-filter-completed-items" />
-          <!-- not sure what goes inside the for="" -->
-          <label for="hideCompleted">Hide Completed Items</label>
+        <!-- START: add a hide completed checkbox -->
+        <div class="hide-completed-items-group">
+          <!-- id on input must match the for on label -->
+          <label>
+            <input type="checkbox" name="toggle-checked" id="toggle-filter-completed-items" class="js-toggle-checked"/>
+            Hide Completed Items
+        </label>
         </div>
 
         <!-- shopping list -->

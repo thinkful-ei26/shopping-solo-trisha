@@ -1,7 +1,7 @@
 /*eslint-env jquery*/
 'use strict';
 
-// 1. change the store from array to object
+// 2. change the store from array to object
 const STORE = {
   items: [
     {name: 'apples', checked: false},
@@ -9,10 +9,12 @@ const STORE = {
     {name: 'milk', checked: true},
     {name: 'bread', checked: false}
   ],
-  hideCompleted: true
-}
+  hideCompleted: false
+};
 
-
+/* *************************************************************
+All functions below have a side effect of mutating global variable STORE
+************************************************************* */
 
 /* User stories for PM drills */
 
@@ -20,11 +22,15 @@ const STORE = {
 //  CHALLENGE #1: User can press a switch/checkbox to toggle between displaying all items or displaying only items that are unchecked
   // 1. Added checkbox in index.html
   // 2. change the state of STORE from an array to an object with hideCompleted property
-  // 3. Create a toggleHideItems function
+  // 3. Create a toggleHideItems function which determines if the STORE.hideCompleted is clicked or not (boolean)
+  // 4. Create handleToggleHideItemFilter attaches the toggleItems function to an event handler that listens for checking #toggle-filter-completed-items
+  // 5. Render the new state of STORE
 
 
 //  CHALLENGE #2: User can type in a search term and the displayed list will be filtered by item names only containing that search term
 //  CHALLENGE #3: User can edit the title of an item
+
+
 
 
 function generateItemElement(item, itemIndex, template) {
@@ -56,17 +62,17 @@ function renderShoppingList() {
   // render the shopping list in the DOM
   console.log('`renderShoppingList` ran');
 
-  //add a changeable variable that will filter the Items
+  //  >>>> add a variable that will filter the Items
   let filteredItems = [...STORE.items];
 
 
-  //add conditional statement that will run through the STORE.items and grab all the items that are not checked and render it on the DOM
+  //  >>>> add conditional statement that will run through the STORE.items and grab all the items that are not checked and render it on the DOM
   if (STORE.hideCompleted) {
     filteredItems = filteredItems.filter(item => !item.checked);
   }
 
 
-  const shoppingListItemsString = generateShoppingItemsString(STORE.items);
+  const shoppingListItemsString = generateShoppingItemsString(filteredItems);
 
   // insert that HTML into the DOM
   $('.js-shopping-list').html(shoppingListItemsString);
@@ -139,18 +145,22 @@ function handleDeleteItemClicked() {
 }
 
 
+
+//  >>>> if the STORE.hideCompleted is false
 function toggleHideItems(){
+  console.log('toggleHideItems ran');
   STORE.hideCompleted = !STORE.hideCompleted;
 }
 
-// when the checkbox with id #toggle-filter-completed-items is clicked
+//  >>>> when the checkbox with id #toggle-filter-completed-items is
+// clicked run toggleHideItems
 function handleToggleHideItemFilter() {
-  console.log(event)
+  console.log('handleToggleHideItemFilter ran');
   $('#toggle-filter-completed-items').click(event => {
     toggleHideItems();
-  })
+    renderShoppingList();
+  });
 }
-
 
 
 
@@ -163,6 +173,7 @@ function handleShoppingList() {
   handleNewItemSubmit();
   handleItemCheckClicked();
   handleDeleteItemClicked();
+  handleToggleHideItemFilter();
 }
 
 // when the page loads, call `handleShoppingList`
