@@ -16,9 +16,21 @@
             <input type="text" name="shopping-list-entry" class="js-shopping-list-entry" placeholder="e.g., broccoli">
             <button type="submit">Add item</button>
         </form>
+
+        //START: add a hide completed button
+        <div>
+          <input type="checkbox" name="hideCompleted" value="">
+          // not sure what goes inside the for=""
+          <label for="hideCompleted">Hide Completed Items</label>
+        </div>
+
+        //shopping list
         <ul class="shopping-list js-shopping-list">
         </ul>
+
+
     </div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="index.js"></script>
 </body>

@@ -1,12 +1,25 @@
 /*eslint-env jquery*/
 'use strict';
 
-const STORE = [
-  {name: 'apples', checked: false},
-  {name: 'oranges', checked: false},
-  {name: 'milk', checked: true},
-  {name: 'bread', checked: false}
-];
+// 1. change the store from array to object
+const STORE = {
+  item = [
+    {name: 'apples', checked: false},
+    {name: 'oranges', checked: false},
+    {name: 'milk', checked: true},
+    {name: 'bread', checked: false}
+  ],
+  hideCompleted = true
+}
+
+
+
+/* User stories for PM drills */
+
+// Implement the following features which will require a more complex store object:
+//  User can press a switch/checkbox to toggle between displaying all items or displaying only items that are unchecked
+//  User can type in a search term and the displayed list will be filtered by item names only containing that search term
+//  User can edit the title of an item
 
 
 function generateItemElement(item, itemIndex, template) {
