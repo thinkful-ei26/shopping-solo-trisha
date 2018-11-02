@@ -28,6 +28,8 @@ All functions below have a side effect of mutating global variable STORE
 
 
 //  CHALLENGE #2: User can type in a search term and the displayed list will be filtered by item names only containing that search term
+
+
 //  CHALLENGE #3: User can edit the title of an item
 
 
