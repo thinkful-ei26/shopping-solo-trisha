@@ -3,13 +3,13 @@
 
 // 1. change the store from array to object
 const STORE = {
-  items = [
+  items: [
     {name: 'apples', checked: false},
     {name: 'oranges', checked: false},
     {name: 'milk', checked: true},
     {name: 'bread', checked: false}
   ],
-  hideCompleted = true
+  hideCompleted: true
 }
 
 
@@ -57,7 +57,7 @@ function renderShoppingList() {
   console.log('`renderShoppingList` ran');
 
   //add a changeable variable that will filter the Items
-  let filteredItems = {...STORE.items};
+  let filteredItems = [...STORE.items];
 
 
   //add conditional statement that will run through the STORE.items and grab all the items that are not checked and render it on the DOM
@@ -145,7 +145,8 @@ function toggleHideItems(){
 
 // when the checkbox with id #toggle-filter-completed-items is clicked
 function handleToggleHideItemFilter() {
-  $('#toggle-filter-completed-items').on('click', event => {
+  console.log(event)
+  $('#toggle-filter-completed-items').click(event => {
     toggleHideItems();
   })
 }
