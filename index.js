@@ -17,11 +17,14 @@ const STORE = {
 /* User stories for PM drills */
 
 // Implement the following features which will require a more complex store object:
+//  CHALLENGE #1: User can press a switch/checkbox to toggle between displaying all items or displaying only items that are unchecked
+  // 1. Added checkbox in index.html
+  // 2. change the state of STORE from an array to an object with hideCompleted property
+  // 3. Create a toggleHideItems function
 
 
-//  User can press a switch/checkbox to toggle between displaying all items or displaying only items that are unchecked
-//  User can type in a search term and the displayed list will be filtered by item names only containing that search term
-//  User can edit the title of an item
+//  CHALLENGE #2: User can type in a search term and the displayed list will be filtered by item names only containing that search term
+//  CHALLENGE #3: User can edit the title of an item
 
 
 function generateItemElement(item, itemIndex, template) {
@@ -52,6 +55,17 @@ function generateShoppingItemsString(shoppingList) {
 function renderShoppingList() {
   // render the shopping list in the DOM
   console.log('`renderShoppingList` ran');
+
+  //add a changeable variable that will filter the Items
+  let filteredItems = {...STORE.items};
+
+
+  //add conditional statement that will run through the STORE.items and grab all the items that are not checked and render it on the DOM
+  if (STORE.hideCompleted) {
+    filteredItems = filteredItems.filter(item => !item.checked);
+  }
+
+
   const shoppingListItemsString = generateShoppingItemsString(STORE.items);
 
   // insert that HTML into the DOM
@@ -123,6 +137,21 @@ function handleDeleteItemClicked() {
     renderShoppingList();
   });
 }
+
+
+function toggleHideItems(){
+  STORE.hideCompleted = !STORE.hideCompleted;
+}
+
+// when the checkbox with id #toggle-filter-completed-items is clicked
+function handleToggleHideItemFilter() {
+  $('#toggle-filter-completed-items').on('click', event => {
+    toggleHideItems();
+  })
+}
+
+
+
 
 // this function will be our callback when the page loads. it's responsible for
 // initially rendering the shopping list, and activating our individual functions
