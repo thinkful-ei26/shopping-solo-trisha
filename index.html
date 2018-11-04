@@ -12,18 +12,19 @@
     <div class="container">
         <h1>Shopping List</h1>
         <form id="js-shopping-list-form">
-            <label for="shopping-list-entry">Add an item</label>
-            <input type="text" name="shopping-list-entry" class="js-shopping-list-entry" placeholder="e.g., broccoli">
+            <label>Add an item
+                <input type="text" name="shopping-list-entry" class="js-shopping-list-entry" placeholder="e.g., broccoli">
+            </label>
             <button type="submit">Add item</button>
         </form>
-
+        <br>
         <!-- START: add a filter by term search box -->
 
         <div class="searchbox-group">
-            <label for="js-shopping-list-search-entry"> Search: </label>
-            <input type="text" name="js-shopping-list-search-entry"  placeholder="e.g., apples" class="js-shopping-list-search-entry">
+            <label> Search List By: 
+                <input type="text" name="js-shopping-list-search-entry"  placeholder="e.g., apples" class="js-shopping-list-search-entry">
+            </label>
         </div>
-        <br>
         <br>
 
         <!-- START: add a hide completed checkbox -->
@@ -32,14 +33,12 @@
           <label>
             <input type="checkbox" name="toggle-checked" id="toggle-filter-completed-items" class="js-toggle-checked"/>
             Hide Completed Items
-        </label>
+          </label>
         </div>
 
         <!-- shopping list -->
         <ul class="shopping-list js-shopping-list">
         </ul>
-
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
