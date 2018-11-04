@@ -4,14 +4,17 @@
 
 const STORE = {
   items: [
-    {name: 'apples', checked: false},
-    {name: 'oranges', checked: false},
-    {name: 'milk', checked: true},
-    {name: 'bread', checked: false}
+    {name: 'item1', checked: false},
+    {name: 'item2', checked: false},
+    {name: 'item3', checked: true},
+    {name: 'item4', checked: true}
   ],
   hideCompleted: false,
   searchTerm: null,
 };
+
+// Bug: Once the checkbox is checked, it will delete all items with array of the clicked item and anything that comes after that. This is a side effect from using an array as a data type. 
+
 
 /* **********************************************************************
 All functions below have a side effect of mutating global variable STORE
@@ -83,12 +86,14 @@ function deleteListItem(itemIndex) {
 }
 
 function handleDeleteItemClicked() {
+
   // like in `handleItemCheckClicked`, we use event delegation
   $('.js-shopping-list').on('click', '.js-item-delete', event => {
+
     // get the index of the item in STORE
     const itemIndex = getItemIndexFromElement(event.currentTarget);
     // delete the item
-    deleteListItem(itemIndex);
+    deleteListItem(itemIndex, 1);
     renderShoppingList();
   });
 }
