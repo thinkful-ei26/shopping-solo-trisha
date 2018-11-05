@@ -14,7 +14,7 @@ const STORE = {
 };
 
 // Bug: Once the checkbox is checked, it will delete all items with array of the clicked item and anything that comes after that. This is a side effect from using an array as a data type. 
-
+// Instead of .filter should I manually loop back from the STORE and grab the index value there?
 
 /* **********************************************************************
 All functions below have a side effect of mutating global variable STORE
@@ -84,6 +84,7 @@ function deleteListItem(itemIndex) {
   console.log(`Deleting item at index  ${itemIndex} from shopping list`);
   STORE.items.splice(itemIndex, 1);
 }
+
 
 function handleDeleteItemClicked() {
 
