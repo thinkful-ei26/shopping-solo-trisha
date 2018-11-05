@@ -13,7 +13,7 @@
         <h1>Shopping List</h1>
         <form id="js-shopping-list-form">
             <label>Add an item
-                <input type="text" name="shopping-list-entry" class="js-shopping-list-entry" placeholder="e.g., broccoli">
+                <input type="text" name="shopping-list-entry" aria-label="item name" class="js-shopping-list-entry" placeholder="e.g., broccoli">
             </label>
             <button type="submit">Add item</button>
         </form>
@@ -31,7 +31,7 @@
         <div class="hide-completed-items-group">
           <!-- id on input must match the for on label -->
           <label>
-            <input type="checkbox" name="toggle-checked" id="toggle-filter-completed-items" class="js-toggle-checked"/>
+            <input type="checkbox" name="toggle-checked" aria-label="search shopping list by item name" id="toggle-filter-completed-items" class="js-toggle-checked"/>
             Hide Completed Items
           </label>
         </div>
